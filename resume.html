@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хакимов Абдулвохид — Python Developer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0f0f1a;
+            --card: #161622;
+            --text: #e8e8e8;
+            --text-muted: #6b6b7b;
+            --accent: #00d4aa;
+            --border: #2a2a3a;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #00a884);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--bg);
+            flex-shrink: 0;
+        }
+
+        .header-info h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .header-info .role {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .header-info .meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Two Column Layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 60px;
+        }
+
+        /* Left Column */
+        .sidebar {
+            border-right: 1px solid var(--border);
+            padding-right: 40px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .contact-list li span {
+            color: var(--text-muted);
+            display: block;
+            font-size: 0.8rem;
+            margin-bottom: 2px;
+        }
+
+        /* Dot Skills */
+        .skill-item {
+            margin-bottom: 16px;
+        }
+
+        .skill-name {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--text);
+        }
+
+        .skill-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+        }
+
+        .dot.active {
+            background: var(--accent);
+        }
+
+        /* Right Column */
+        .content {
+            padding-left: 20px;
+        }
+
+        .content-section {
+            margin-bottom: 50px;
+        }
+
+        .content-section h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+        }
+
+        .about-text {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .about-text strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Projects */
+        .project {
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .project:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text);
+        }
+
+        .project-tech {
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Experience */
+        .exp-item {
+            margin-bottom: 30px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border);
+        }
+
+        .exp-item::before {
+            content: '';
+            position: absolute;
+            left: -5px;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .exp-date {
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .exp-title {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .exp-company {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .exp-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Education */
+        .edu-item {
+            margin-bottom: 20px;
+        }
+
+        .edu-year {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .edu-school {
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .edu-degree {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Salary */
+        .salary {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid var(--border);
+        }
+
+        .salary-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .salary-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            .header {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .main-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+                padding-right: 0;
+                padding-bottom: 30px;
+            }
+            .content {
+                padding-left: 0;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            .container {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="avatar">ВА</div>
+            <div class="header-info">
+                <h1>Хакимов Абдулвохид</h1>
+                <div class="role">Junior Python Developer</div>
+                <div class="meta">Новосибирск • 27 лет • Готов к переезду</div>
+            </div>
+        </header>
+
+        <div class="main-grid">
+            <!-- Left Sidebar -->
+            <aside class="sidebar">
+                <div class="section">
+                    <div class="section-title">Контакты</div>
+                    <ul class="contact-list">
+                        <li>
+                            <span>Телефон</span>
+                            +7 (983) 0248748
+                        </li>
+                        <li>
+                            <span>Telegram / WhatsApp</span>
+                            +7 (904) 8983493
+                        </li>
+                        <li>
+                            <span>Email</span>
+                            vokhid_khakimov@vk.com
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Навыки</div>
+                    
+                    <div class="skill-item">
+                        <div class="skill-name">Python</div>
+                        <div class="skill-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">REST API / Интеграции</div>
+                        <div class="skill-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Telegram/VK Bot API</div>
+                        <div class="skill-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">Google Apps Script</div>
+                        <div class="skill-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-name">HTML / CSS / JS</div>
+                        <div class="skill-dots">
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Языки</div>
+                    <div class="skill-item">
+                        <div class="skill-name">Русский — родной</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Английский — A2</div>
+                    </div>
+                </div>
+
+                <div class="salary">
+                    <div class="salary-label">Ожидаемая зарплата</div>
+                    <div class="salary-value">150 000 ₽</div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="content">
+                <!-- About -->
+                <div class="content-section">
+                    <h2>О себе</h2>
+                    <p class="about-text">
+                        Перехожу в разработку из сферы управления качеством. За <strong>2–3 месяца самостоятельно</strong> создал 5 работающих продуктов для автоматизации e-commerce: от ботов до веб-приложений с собственными алгоритмами. Ищу позицию junior-разработчика, готов учиться и развиваться в команде профессионалов.
+                    </p>
+                </div>
+
+                <!-- Projects -->
+                <div class="content-section">
+                    <h2>Проекты (2–3 месяца, solo)</h2>
+                    
+                    <div class="project">
+                        <div class="project-header">
+                            <span class="project-title">Telegram/VK-бот заказов WB</span>
+                            <span class="project-tech">Python • Bot API</span>
+                        </div>
+                        <p class="project-desc">Анализирует расходы по каждому заказу в реальном времени и выдаёт готовый отчёт</p>
+                    </div>
+
+                    <div class="project">
+                        <div class="project-header">
+                            <span class="project-title">Таблица юнит-экономики</span>
+                            <span class="project-tech">Python • REST API • Google Apps Script</span>
+                        </div>
+                        <p class="project-desc">Автоматический расчёт цен по персональной формуле и выгрузка в кабинет WB в один клик</p>
+                    </div>
+
+                    <div class="project">
+                        <div class="project-header">
+                            <span class="project-title">Автоотчёт детализации</span>
+                            <span class="project-tech">Python • Pandas • Excel API</span>
+                        </div>
+                        <p class="project-desc">Получение данных через API, конвертация в Excel с полным расчётом и чистой прибылью</p>
+                    </div>
+
+                    <div class="project">
+                        <div class="project-header">
+                            <span class="project-title">Синхронизация товаров</span>
+                            <span class="project-tech">Python • REST API</span>
+                        </div>
+                        <p class="project-desc">Централизованное управление ассортиментом через API с выгрузкой на несколько кабинетов</p>
+                    </div>
+
+                    <div class="project">
+                        <div class="project-header">
+                            <span class="project-title">Веб-приложение юнит-экономики</span>
+                            <span class="project-tech">Python • Flask • HTML/CSS/JS</span>
+                        </div>
+                        <p class="project-desc">Собственная формула расчёта, превосходящая по точности стандартный инструмент WB</p>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="content-section">
+                    <h2>Опыт работы</h2>
+                    
+                    <div class="exp-item">
+                        <div class="exp-date">АВГ 2024 — ФЕВ 2025</div>
+                        <div class="exp-title">Менеджер по качеству</div>
+                        <div class="exp-company">Альмед (ООО Меридиан)</div>
+                        <div class="exp-desc">Внедрение речевой аналитики, анализ данных, разработка бизнес-процессов</div>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-date">МАРТ 2023 — ИЮЛЬ 2024</div>
+                        <div class="exp-title">Менеджер по качеству</div>
+                        <div class="exp-company">Испытательная лаборатория ООО "ПАРТНЕР"</div>
+                        <div class="exp-desc">Разработка регламентов, контроль СМК, обучение персонала</div>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-date">МАРТ 2021 — АПРЕЛЬ 2022</div>
+                        <div class="exp-title">Менеджер по качеству</div>
+                        <div class="exp-company">Green House coffee</div>
+                        <div class="exp-desc">Внедрение системы оценок, статистические методы контроля</div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div class="content-section">
+                    <h2>Образование</h2>
+                    
+                    <div class="edu-item">
+                        <div class="edu-year">2023</div>
+                        <div class="edu-school">Сибирский государственный университет науки и технологий им. Решетнёва</div>
+                        <div class="edu-degree">Магистр — Управление качеством и бизнес-процессами</div>
+                    </div>
+
+                    <div class="edu-item">
+                        <div class="edu-year">2020</div>
+                        <div class="edu-school">Сибирский государственный университет науки и технологий им. Решетнёва</div>
+                        <div class="edu-degree">Высшее — Управление качеством</div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer style="margin-top: 60px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
+            Резюме обновлено 14 января 2026
+        </footer>
+    </div>
+</body>
+</html>
